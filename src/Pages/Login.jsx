@@ -1,10 +1,10 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
-import { Helmet } from "react-helmet-async";
-import useAuth from "../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 import Container from "../Shared/Container";
 import SocialLogin from "../Components/SocialLogin";
-
+import useAuth from "../Hooks/useAuth";
+import { Title } from "../Shared/Title";
 
 const Login = () => {
   const { loginWithEmail } = useAuth();
@@ -41,7 +41,7 @@ const Login = () => {
         <title>ZAK Parcel | Sign In</title>
       </Helmet>
       <Container>
-        <Link to={"/"} className="btn btn-primary mt-6 ">
+        <Link to={"/"} className="btn btn-primary text-white ">
           Go home
         </Link>
         <div className="hero min-h-screen bg-base-200">
@@ -50,10 +50,8 @@ const Login = () => {
               <img className="w-5/6" src="{loginImg}" alt="" />
             </div>
             <div className="card flex-shrink-0  w-full max-w-md shadow-2xl bg-base-100">
-              <form onSubmit={handleLogin} className="card-body">
-                <h1 className="text-3xl font-bold  text-black text-center">
-                  Login
-                </h1>
+              <Title heading={"Login"} />
+              <form onSubmit={handleLogin} className="card-body w-96">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text font-semibold text-black">

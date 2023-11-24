@@ -1,14 +1,13 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import Container from "../Shared/Container";
 import Swal from "sweetalert2";
-import useAuth from "../../Hooks/UseAuth/UseAuth";
-import Container from "../../Components/Container/Container";
-import registerImg from "../../assets/others/authentication2.png";
-import UseAxiosPublic from "../../Hooks/useAxiosPublic/UseAxiosPublic";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Register = () => {
-  const axiosPublic = UseAxiosPublic();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -52,21 +51,24 @@ const Register = () => {
 
   return (
     <>
-      <Link to={"/"} className="btn btn-primary mt-6 ">
-        Go home
-      </Link>
       <Helmet>
         <title>ZAK Parcel | Sign Up</title>
       </Helmet>
       <Container>
+        <Link to={"/"} className="btn btn-primary text-white">
+          Go home
+        </Link>
         <div className="hero min-h-screen bg-base-200">
           <div className="hero-content flex-col lg:flex-row-reverse ">
             <div className="text-center lg:text-left">
-              <img src={registerImg} alt="" />
+              <img src="{registerImg}" alt="" />
             </div>
             <div className="card flex-shrink-0 mb-6 w-full max-w-md shadow-2xl bg-base-100">
               <h1 className="text-3xl p-6 mt-2 font-bold">Sign up now!</h1>
-              <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="card-body w-96"
+              >
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Name</span>
@@ -162,7 +164,7 @@ const Register = () => {
                 <p className="mt-4">
                   <small>
                     Already have an account
-                    <Link className="btn btn-primary btn-sm" to="/login">
+                    <Link className="btn btn-primary btn-sm ml-3" to="/login">
                       Login
                     </Link>
                   </small>
