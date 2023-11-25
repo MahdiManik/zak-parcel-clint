@@ -98,8 +98,8 @@ const Register = () => {
                     className="input input-bordered"
                     {...register("userType", { required: true })}
                   >
-                    <option value="User">User</option>
-                    <option value="DeliveryMen">DeliveryMen</option>
+                    <option value="user">user</option>
+                    <option value="deliveryMan">deliveryMan</option>
                   </select>
 
                   {errors.userType && (

@@ -4,12 +4,14 @@ import { FaBox } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import { MdOutlineLegendToggle } from "react-icons/md";
 import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
 
   const handleLogOut = () => {
     logOut();
+    Swal.fire("Logout successful");
   };
   return (
     <div>

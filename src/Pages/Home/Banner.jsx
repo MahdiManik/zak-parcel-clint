@@ -2,8 +2,8 @@ import SectionTitle from "../../Shared/SectionTitle";
 import "./banner.css";
 const Banner = () => {
   return (
-    <div className="mb-20  overflow-hidden object-cover">
-      <div className="featured-item bg-fixed overflow-hidden object-cover h-[700px]">
+    <div className="mb-20  ">
+      <div className="featured-item bg-fixed  h-[700px]">
         <div className=" h-[700px] bg-opacity-20">
           <div className="flex justify-center items-center h-[700px] bg-slate-900 bg-opacity-60 pt-6 pb-20 px-36 text-white rounded-b-lg overflow-hidden">
             <div className="">

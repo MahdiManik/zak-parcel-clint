@@ -1,3 +1,7 @@
 .featured-item {
-	background-image: url("../../assets/hom-banner/2.jpg");
-  }
+  background-image: url("../../assets/hom-banner/2.jpg");
+  background-repeat: no-repeat;
+  object-fit: cover;
+  overflow: hidden;
+  background-size: cover;
+}
