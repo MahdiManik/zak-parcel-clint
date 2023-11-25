@@ -49,7 +49,7 @@ const Login = () => {
             <div className="text-center lg:text-left">
               <img className="w-5/6" src="{loginImg}" alt="" />
             </div>
-            <div className="card flex-shrink-0  w-full max-w-md shadow-2xl bg-base-100">
+            <div className="card flex-shrink-0  w-full max-w-lg shadow-2xl bg-base-100">
               <Title heading={"Login"} />
               <form onSubmit={handleLogin} className="card-body w-96">
                 <div className="form-control">

@@ -3,8 +3,14 @@ import Sidebar from "./Sidebar";
 import { FaBox } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import { MdOutlineLegendToggle } from "react-icons/md";
+import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+
+  const handleLogOut = () => {
+    logOut();
+  };
   return (
     <div>
       <div className="drawer bg-orange-500  z-10">
@@ -26,7 +32,7 @@ const Navbar = () => {
               ZAK-Parcel
             </div>
             <div className="flex-none hidden  lg:block ">
-              <div className="flex justify-center text-lg items-center list-none gap-6  mx-6  mr-32">
+              <div className="flex justify-center text-lg items-center list-none gap-12  mx-6  mr-4">
                 <li>
                   <NavLink
                     className="font-bold hover:underline text-white"
@@ -43,14 +49,54 @@ const Navbar = () => {
                     <IoNotifications />
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    className="font-bold hover:underline text-white"
-                    to={"/login"}
-                  >
-                    Login
-                  </NavLink>
-                </li>
+                {user ? (
+                  ""
+                ) : (
+                  <li>
+                    <NavLink
+                      className="font-bold hover:underline text-white"
+                      to={"/login"}
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                )}
+
+                <div className="">
+                  {user ? (
+                    <div className="dropdown dropdown-end">
+                      <label
+                        tabIndex={0}
+                        className="btn btn-ghost btn-circle avatar"
+                      >
+                        <div className="w-10 rounded-full">
+                          <img alt="user" src={user?.photoURL} />
+                        </div>
+                      </label>
+                      <div
+                        tabIndex={0}
+                        className="menu menu-lg dropdown-content mt-3 z-[1]  shadow bg-orange-500 rounded-box flex justify-center font-bold text-lg items-center list-none gap-5 px-8 py-10 text-white  w-52"
+                      >
+                        <li>
+                          <NavLink
+                            className="btn btn-ghost w-full"
+                            to={"/dashboard"}
+                          >
+                            Dashboard
+                          </NavLink>
+                        </li>
+                        <button
+                          className="btn btn-ghost w-full"
+                          onClick={handleLogOut}
+                        >
+                          LogOut
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
             </div>
           </div>

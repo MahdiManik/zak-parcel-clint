@@ -13,11 +13,12 @@ const SocialLogin = () => {
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
-        //console.log(result.user);
+        console.log(result.user);
         const userInfo = {
           name: result.user?.displayName,
           email: result.user?.email,
           photo: result.user?.photoURL,
+          userType: "user",
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           console.log(res.data);

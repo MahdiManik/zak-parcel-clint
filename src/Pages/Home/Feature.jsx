@@ -12,7 +12,7 @@ const Feature = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 justify-center items-center lg:grid-cols-3 gap-8 mt-12">
           <div className="card w-96  border-2 border-orange-500 ">
             <figure>
-              <img src={img} alt="icon" className="h-52 w-full" />
+              <img src={img} alt="icon" className="h-60 w-full" />
             </figure>
             <div className="card-body gap-4">
               <h2 className="text-2xl font-semibold text-center mb-2">
@@ -28,7 +28,7 @@ const Feature = () => {
           </div>
           <div className="card w-96  border-2 border-orange-500">
             <figure>
-              <img src={img2} alt="icon" className="h-52 w-full" />
+              <img src={img2} alt="icon" className="h-60 w-full" />
             </figure>
             <div className="card-body gap-4">
               <h2 className="text-2xl font-semibold text-center mb-2">
@@ -44,7 +44,7 @@ const Feature = () => {
           </div>
           <div className="card w-96  border-2 border-orange-500 ">
             <figure>
-              <img src={img3} alt="icon" className="h-52 w-full" />
+              <img src={img3} alt="icon" className="h-60 w-full" />
             </figure>
             <div className="card-body gap-4">
               <h2 className="text-2xl font-semibold text-center mb-2">

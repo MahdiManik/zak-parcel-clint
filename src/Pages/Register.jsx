@@ -5,6 +5,7 @@ import useAuth from "../Hooks/useAuth";
 import Container from "../Shared/Container";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import SocialLogin from "../Components/SocialLogin";
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
@@ -24,11 +25,12 @@ const Register = () => {
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          //  console.log("user profile info updated");
+          console.log("user profile info updated");
           const userInfo = {
             name: data.name,
             email: data.email,
             photo: data.photoURL,
+            userType: data.userType,
           };
           axiosPublic.post("/users", userInfo).then((res) => {
             console.log(res.data);
@@ -63,11 +65,11 @@ const Register = () => {
             <div className="text-center lg:text-left">
               <img src="{registerImg}" alt="" />
             </div>
-            <div className="card flex-shrink-0 mb-6 w-full max-w-md shadow-2xl bg-base-100">
+            <div className="card flex-shrink-0 mb-6 w-full max-w-lg shadow-2xl bg-base-100">
               <h1 className="text-3xl p-6 mt-2 font-bold">Sign up now!</h1>
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="card-body w-96"
+                className="card-body w-[460px]"
               >
                 <div className="form-control">
                   <label className="label">
@@ -84,6 +86,27 @@ const Register = () => {
                     <span className="text-red-600">Name is required</span>
                   )}
                 </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">User Type</span>
+                  </label>
+                  <select
+                    type="text"
+                    placeholder="user type"
+                    name="userType"
+                    className="input input-bordered"
+                    {...register("userType", { required: true })}
+                  >
+                    <option value="User">User</option>
+                    <option value="DeliveryMen">DeliveryMen</option>
+                  </select>
+
+                  {errors.userType && (
+                    <span className="text-red-600">userType is required</span>
+                  )}
+                </div>
+
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Photo URL</span>
@@ -148,11 +171,6 @@ const Register = () => {
                       number and one special character.
                     </p>
                   )}
-                  <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
-                      Forgot password?
-                    </a>
-                  </label>
                 </div>
                 <div className="form-control mt-6">
                   <input
@@ -170,6 +188,7 @@ const Register = () => {
                   </small>
                 </p>
               </form>
+              <SocialLogin />
             </div>
           </div>
         </div>
