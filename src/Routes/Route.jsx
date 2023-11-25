@@ -10,6 +10,7 @@ import UserHome from "../Pages/Dashboard/User/UserHome";
 import AdminRoute from "./AdminRoute";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 import DeliveryManHome from "../Pages/Dashboard/DeliveryMan/DeliveryManHome";
+import BookParcel from "../Pages/Dashboard/User/BookParcel";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "book-parcel",
-        element: <UserHome />,
+        element: <BookParcel />,
       },
       {
         path: "delivery-man-home",

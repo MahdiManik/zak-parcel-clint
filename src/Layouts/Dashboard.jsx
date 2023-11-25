@@ -8,7 +8,7 @@ import DeliveryMan from "../Pages/Dashboard/DeliveryMan/DeliveryaMan";
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isDeliveryMan] = useDeliveryMan();
-  console.log(isDeliveryMan);
+
   return (
     <div className="grid grid-cols-9 min-h-[100vh] font-cinzel">
       <div className="col-span-2 bg-orange-400 text-black p-8">
