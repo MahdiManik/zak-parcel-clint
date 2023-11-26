@@ -13,18 +13,16 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="grid grid-cols-9 min-h-[100vh] font-cinzel">
-        <div className="col-span-2 bg-orange-400 text-black p-8">
-          <div className="w-full bg-orange-500 p-4">
-            <h3 className="text-xl font-semibold text-white text-center">
-              Users Dashboard
+      <div className="grid grid-cols-1 md:grid-cols-9 lg:grid-cols-9 min-h-[100vh]">
+        <div className="col-span-2 bg-black text-white ">
+          <div className="w-full bg-orange-600 p-4">
+            <h3 className="text-3xl font-bold text-white text-center">
+              Dashboard
             </h3>
           </div>
-          <div className="mt-6 ">
+          <div className="mt-6 p-8 text-orange-300 text-center">
             <h3 className="text-2xl font-bold">ZAK-Parcel</h3>
-            <p className="font-semibold text-lg tracking-[3px]">
-              Courier service
-            </p>
+            <p className="font-semibold text-lg ">Courier service</p>
           </div>
           {isAdmin ? (
             <>
@@ -40,13 +38,15 @@ const Dashboard = () => {
             </>
           )}
         </div>
-        <div className="col-span-7 ">
-          <div className="w-full bg-orange-500 p-4">
+        <div className="col-span-7 bg-orange-600">
+          <div className="w-full bg-black p-4">
             <h3 className="text-3xl font-semibold text-white text-center">
               Hi! {user?.displayName}, Welcome to ZAK-parcel
             </h3>
           </div>
-          <Outlet></Outlet>
+          <div className="bg-orange-600">
+            <Outlet></Outlet>
+          </div>
         </div>
       </div>
     </>

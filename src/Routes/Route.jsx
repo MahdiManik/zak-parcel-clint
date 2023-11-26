@@ -6,12 +6,12 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layouts/Dashboard";
-import UserHome from "../Pages/Dashboard/User/UserHome";
 import AdminRoute from "./AdminRoute";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 import DeliveryManHome from "../Pages/Dashboard/DeliveryMan/DeliveryManHome";
 import BookParcel from "../Pages/Dashboard/User/BookParcel";
 import MyParcel from "../Pages/Dashboard/User/MyParcel";
+import Profile from "../Pages/Dashboard/User/Profile";
 
 const router = createBrowserRouter([
   {
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "user-home",
-        element: <UserHome />,
+        path: "user-profile",
+        element: <Profile />,
       },
       {
         path: "book-parcel",

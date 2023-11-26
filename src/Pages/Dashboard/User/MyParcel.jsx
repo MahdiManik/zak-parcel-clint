@@ -1,58 +1,34 @@
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../Hooks/useAuth";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useParcel from "../../../Hooks/useParcel";
+import MyParcelRow from "./MyParcelRow";
 
 const MyParcel = () => {
-  const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
-  const { data: booking = [], refetch } = useQuery({
-    queryKey: ["booking"],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`bookings/${user?.email}`);
-      console.log(res.data);
-      return res.data;
-    },
-  });
+  const [booking, refetch] = useParcel();
+
   return (
     <div>
-      <table className="min-w-full text-xs">
-		
-        <thead className="dark:bg-gray-700">
+      <div className=" text-white  mt-12">
+        <h3 className="text-5xl p-4 w-96 font-bold border-2 text-white mx-auto text-center">
+          My Parcel ({booking?.length})
+        </h3>
+      </div>
+      <table className="md:w-[1080px] w-[100px]  mt-8 mx-auto  text-white border-4">
+        <thead className="bg-white text-black">
           <tr className="text-left">
-            <th className="p-3">Invoice #</th>
-            <th className="p-3">Client</th>
-            <th className="p-3">Issued</th>
-            <th className="p-3">Due</th>
-            <th className="p-3 text-right">Amount</th>
+            <th className="p-3">Parcel Type</th>
+            <th className="p-3">Requested Date</th>
+            <th className="p-3">Approximate Date</th>
+            <th className="p-3">Booking Date</th>
+            <th className="p-3 ">Delivery Men ID</th>
             <th className="p-3">Status</th>
+            <th className="p-3">Update</th>
+            <th className="p-3">Cancel</th>
+            <th className="p-3">Pay</th>
+            <th className="p-3">Review</th>
           </tr>
         </thead>
-        <tbody>
-          <tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
-            <td className="p-3">
-              <p>97412378923</p>
-            </td>
-            <td className="p-3">
-              <p>Microsoft Corporation</p>
-            </td>
-            <td className="p-3">
-              <p>14 Jan 2022</p>
-              <p className="dark:text-gray-400">Friday</p>
-            </td>
-            <td className="p-3">
-              <p>01 Feb 2022</p>
-              <p className="dark:text-gray-400">Tuesday</p>
-            </td>
-            <td className="p-3 text-right">
-              <p>$15,792</p>
-            </td>
-            <td className="p-3 text-right">
-              <span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-                <span>Pending</span>
-              </span>
-            </td>
-          </tr>
-        </tbody>
+        {booking?.map((parcel) => (
+          <MyParcelRow key={parcel?._id} refetch={refetch} parcel={parcel} />
+        ))}
       </table>
     </div>
   );
