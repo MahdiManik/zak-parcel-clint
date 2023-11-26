@@ -1,9 +1,12 @@
 import { Title } from "../../../Shared/Title";
 import useAuth from "../../../Hooks/useAuth";
 import { useState } from "react";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const BookParcel = () => {
   const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [errors, setErrors] = useState({});
@@ -82,8 +85,19 @@ const BookParcel = () => {
       longitude,
       latitude,
       parcelDeliveryAddress,
+      status: "pending",
     };
     console.log(bookData);
+    axiosPublic.post("/bookings", bookData).then((res) => {
+      console.log(res.data);
+      if (res.data?.insertedId) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your parcel booking successful",
+        });
+      }
+    });
   };
 
   return (

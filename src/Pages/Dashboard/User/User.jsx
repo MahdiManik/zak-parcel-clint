@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 const User = () => {
   return (
     <div>
+      
       <div className="flex flex-col mt-12 gap-5 font-bold">
         <NavLink
           className="hover:text-white text-black flex justify-start items-center gap-3"
@@ -24,10 +25,10 @@ const User = () => {
         </NavLink>
         <NavLink
           className="hover:text-white flex items-center gap-3"
-          to={"/dashboard/payment-history"}
+          to={"/dashboard/my-parcel"}
         >
           <span className=""></span>
-          Payment history
+          My Parcel
         </NavLink>
         <NavLink
           className="hover:text-white text-black flex items-center gap-3
