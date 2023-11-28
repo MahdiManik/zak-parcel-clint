@@ -1,14 +1,23 @@
+import { useForm } from "react-hook-form";
 import { Title } from "../../../Shared/Title";
 import useAuth from "../../../Hooks/useAuth";
+import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
 
-const BookParcel = () => {
+const UpdateParcel = () => {
   const { user } = useAuth();
+  const data = useLoaderData();
+  console.log("data", data);
+  const {
+    phone,
+    parcelType,
+    receiverName,
+    receiverPhoneNumber,
+    parcelDeliveryAddress,
+    requestedDeliveryDate,
+  } = data || {};
+
   const { register, handleSubmit } = useForm();
-  const axiosPublic = useAxiosPublic();
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [errors, setErrors] = useState({});
@@ -59,60 +68,21 @@ const BookParcel = () => {
     setErrors({ ...errors, longitude: validateLongitude(value) });
   };
 
-  const bookingDate = new Date();
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const phone = form.phone.value;
-    const parcelWeight = form.parcelWeight.value;
-    const parcelType = form.parcelType.value;
-    const receiverName = form.receiverName.value;
-    const receiverPhoneNumber = form.receiverPhoneNumber.value;
-    const requestedDeliveryDate = form.requestedDeliveryDate.value;
-    const price = form.price.value;
-    const parcelDeliveryAddress = form.parcelDeliveryAddress.value;
-    const longitude = form.longitude.value;
-
-    const bookData = {
-      name,
-      email,
-      phone,
-      parcelType,
-      receiverName,
-      receiverPhoneNumber,
-      requestedDeliveryDate,
-      parcelWeight,
-      price,
-      longitude,
-      latitude,
-      parcelDeliveryAddress,
-      bookingDate,
-      status: "pending",
-    };
-    console.log(bookData);
-    axiosPublic.post("/bookings", bookData).then((res) => {
-      console.log(res.data);
-      if (res.data?.insertedId) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Your parcel booking successful",
-        });
-      }
-    });
+  const onsubmit = () => {
+    console.log("updated");
   };
 
   return (
     <div>
       <div className="bg-gray-200 p-12 mb-20">
         <h1 className="text-4xl font-semibold text-gray-700 text-center mb-8">
-          <Title heading={"Please fill this form for booking your parcel"} />
+          <Title heading={"This form is for updating your booking parcel"} />
         </h1>
         <p className="text-gray-600 text-center mb-8 w-2/3 mx-auto"></p>
-        <form className="rounded-lg p-8" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="rounded-lg p-8"
+          onSubmit={() => handleSubmit(onsubmit)}
+        >
           <div className="flex flex-wrap -mx-4 mb-4">
             <div className="w-full md:w-1/2 px-4 mb-4">
               <label
@@ -162,6 +132,7 @@ const BookParcel = () => {
                 name="phone"
                 type="number"
                 placeholder="Phone Number"
+                defaultValue={phone}
               />
             </div>
             <div className="w-full md:w-1/2 px-4 mt-4">
@@ -177,6 +148,7 @@ const BookParcel = () => {
                 name="parcelType"
                 type="text"
                 placeholder="Parcel Type"
+                defaultValue={parcelType}
               />
             </div>
 
@@ -192,6 +164,7 @@ const BookParcel = () => {
                 id="receiverName"
                 name="receiverName"
                 type="text"
+                defaultValue={receiverName}
                 placeholder=""
               />
             </div>
@@ -207,6 +180,7 @@ const BookParcel = () => {
                 id="receiverPhoneNumber"
                 name="receiverPhoneNumber"
                 type="text"
+                defaultValue={receiverPhoneNumber}
                 placeholder=""
               />
             </div>
@@ -223,6 +197,7 @@ const BookParcel = () => {
                 id="parcelDeliveryAddress"
                 name="parcelDeliveryAddress"
                 type="text"
+                defaultValue={parcelDeliveryAddress}
                 placeholder=""
               />
             </div>
@@ -239,10 +214,11 @@ const BookParcel = () => {
                   errors.latitude ? "border-red-500" : ""
                 }`}
                 id="latitude"
+                defaultValue={latitude}
                 name="latitude"
                 type="number"
                 placeholder="Latitude"
-                value={latitude}
+                //value={latitude}
                 onChange={handleLatitudeChange}
                 {...register("latitude", { required: true })}
               />
@@ -264,9 +240,10 @@ const BookParcel = () => {
                 }`}
                 id="longitude"
                 name="longitude"
+                defaultValue={longitude}
                 type="number"
                 placeholder="Longitude"
-                value={longitude}
+                //value={longitude}
                 onChange={handleLongitudeChange}
                 {...register("longitude", { required: true })}
               />
@@ -287,6 +264,7 @@ const BookParcel = () => {
                 className="block w-full border rounded-md py-2 px-3 text-gray-700 placeholder-gray-400 focus:border-2 focus:border-orange-500"
                 id="requestedDeliveryDate"
                 name="requestedDeliveryDate"
+                defaultValue={requestedDeliveryDate}
                 type="text"
                 placeholder=""
               />
@@ -304,10 +282,11 @@ const BookParcel = () => {
                 className="block w-full border rounded-md py-2 px-3 text-gray-700 placeholder-gray-400 focus:border-2 focus:border-orange-500"
                 id="parcelWeight"
                 name="parcelWeight"
+                defaultValue={parcelWeight}
                 type="number"
                 placeholder=""
                 onChange={calculatePrice}
-                value={parcelWeight}
+                //value={parcelWeight}
               />
             </div>
             <div className="w-full md:w-1/2 px-4 mt-4">
@@ -322,6 +301,7 @@ const BookParcel = () => {
                 id="price"
                 name="price"
                 type="number"
+                //defaultValue={price}
                 placeholder=""
                 {...register("price", { required: true })}
                 value={price}
@@ -344,4 +324,4 @@ const BookParcel = () => {
   );
 };
 
-export default BookParcel;
+export default UpdateParcel;

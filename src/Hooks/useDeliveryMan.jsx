@@ -6,7 +6,7 @@ const useDeliveryMan = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data: isDeliveryMan, isPending: isDeliveryManLoading } = useQuery({
-    queryKey: [user?.email, "isDeliveryMan"],
+    queryKey: [user?.email, "deliveryMan", "isDeliveryMan"],
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`users/delivery-man/${user?.email}`);

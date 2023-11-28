@@ -12,6 +12,10 @@ import DeliveryManHome from "../Pages/Dashboard/DeliveryMan/DeliveryManHome";
 import BookParcel from "../Pages/Dashboard/User/BookParcel";
 import MyParcel from "../Pages/Dashboard/User/MyParcel";
 import Profile from "../Pages/Dashboard/User/Profile";
+import AllParcel from "../Pages/Dashboard/Admin/AllParcel";
+import AllDeliveryMan from "../Pages/Dashboard/Admin/AllDeliveryMan";
+import { Modal } from "bootstrap";
+import UpdateParcel from "../Pages/Dashboard/User/UpdateParcel";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +66,12 @@ const router = createBrowserRouter([
         element: <DeliveryManHome />,
       },
       {
+        path: "update-booking",
+        element: <UpdateParcel />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:7000/bookings/${params.email}`),
+      },
+      {
         path: "admin-home",
         element: (
           <AdminRoute>
@@ -69,22 +79,22 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      //  {
-      //    path: "add",
-      //    element: (
-      //      <AdminRoute>
-      //        <AddItem />
-      //      </AdminRoute>
-      //    ),
-      //  },
-      //  {
-      //    path: "manage",
-      //    element: (
-      //      <AdminRoute>
-      //        <ManageItem />
-      //      </AdminRoute>
-      //    ),
-      //  },
+      {
+        path: "all-parcel",
+        element: (
+          <AdminRoute>
+            <AllParcel />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "all-delivery-man",
+        element: (
+          <AdminRoute>
+            <AllDeliveryMan />
+          </AdminRoute>
+        ),
+      },
       //  {
       //    path: "update/:id",
       //    element: (
@@ -94,17 +104,17 @@ const router = createBrowserRouter([
       //    ),
       //    loader: ({ params }) =>
       //      fetch(
-      //        `https://bistro-boss-server-seven-self.vercel.app/menu/${params.id}`
+      //        `/menu/${params.id}`
       //      ),
       //  },
-      //  {
-      //    path: "users",
-      //    element: (
-      //      <AdminRoute>
-      //        <AllUsers />
-      //      </AdminRoute>
-      //    ),
-      //  },
+      {
+        path: "modal",
+        element: (
+          <AdminRoute>
+            <Modal />
+          </AdminRoute>
+        ),
+      },
     ],
   },
 ]);

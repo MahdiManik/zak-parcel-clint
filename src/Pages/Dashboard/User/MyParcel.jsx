@@ -6,14 +6,14 @@ const MyParcel = () => {
 
   return (
     <div>
-      <div className=" text-white  mt-12">
+      <div className=" text-white mt-12">
         <h3 className="text-5xl p-4 w-96 font-bold border-2 text-white mx-auto text-center">
           My Parcel ({booking?.length})
         </h3>
       </div>
-      <table className="md:w-[1080px] w-[100px]  mt-8 mx-auto  text-white border-4">
+      <table className="md:w-[1080px] text-xs mt-8 mx-auto  text-white border-4">
         <thead className="bg-white text-black">
-          <tr className="text-left">
+          <tr className="">
             <th className="p-3">Parcel Type</th>
             <th className="p-3">Requested Date</th>
             <th className="p-3">Approximate Date</th>
