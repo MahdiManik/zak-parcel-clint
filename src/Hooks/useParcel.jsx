@@ -9,7 +9,7 @@ const useParcel = () => {
     queryKey: ["booking"],
     queryFn: async () => {
       const res = await axiosSecure.get(`bookings/${user?.email}`);
-    //  console.log(res.data);
+      //  console.log(res.data);
       return res.data;
     },
   });

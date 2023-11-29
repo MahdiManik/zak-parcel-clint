@@ -7,7 +7,7 @@ import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layouts/Dashboard";
 import AdminRoute from "./AdminRoute";
-import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
+import AdminHome from "../Pages/Dashboard/Admin/AllUsers";
 import DeliveryManHome from "../Pages/Dashboard/DeliveryMan/DeliveryManHome";
 import BookParcel from "../Pages/Dashboard/User/BookParcel";
 import MyParcel from "../Pages/Dashboard/User/MyParcel";
@@ -16,6 +16,8 @@ import AllParcel from "../Pages/Dashboard/Admin/AllParcel";
 import AllDeliveryMan from "../Pages/Dashboard/Admin/AllDeliveryMan";
 import { Modal } from "bootstrap";
 import UpdateParcel from "../Pages/Dashboard/User/UpdateParcel";
+import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
+import Payment from "../Pages/Dashboard/User/Payment";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "user-profile",
         element: <Profile />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
       },
       {
         path: "book-parcel",
@@ -84,6 +90,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllParcel />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "all-users",
+        element: (
+          <AdminRoute>
+            <AllUsers />
           </AdminRoute>
         ),
       },

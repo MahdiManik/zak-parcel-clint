@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 
 const BookParcel = () => {
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register } = useForm();
   const axiosPublic = useAxiosPublic();
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -61,7 +61,7 @@ const BookParcel = () => {
 
   const bookingDate = new Date();
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -112,7 +112,7 @@ const BookParcel = () => {
           <Title heading={"Please fill this form for booking your parcel"} />
         </h1>
         <p className="text-gray-600 text-center mb-8 w-2/3 mx-auto"></p>
-        <form className="rounded-lg p-8" onSubmit={handleSubmit(onSubmit)}>
+        <form className="rounded-lg p-8" onSubmit={handleSubmit}>
           <div className="flex flex-wrap -mx-4 mb-4">
             <div className="w-full md:w-1/2 px-4 mb-4">
               <label
@@ -131,6 +131,7 @@ const BookParcel = () => {
                 defaultValue={user?.displayName}
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mb-4 ">
               <label
                 className="text-gray-700 font-semibold mb-2 block"
@@ -148,6 +149,7 @@ const BookParcel = () => {
                 type="text"
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mt-4">
               <label
                 className="text-gray-700 font-semibold mb-2 block"
@@ -164,6 +166,7 @@ const BookParcel = () => {
                 placeholder="Phone Number"
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mt-4">
               <label
                 className="text-gray-700 font-semibold mb-2 block"
@@ -195,6 +198,7 @@ const BookParcel = () => {
                 placeholder=""
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mt-4">
               <label
                 className="text-gray-700 font-semibold mb-4 block"
@@ -210,6 +214,7 @@ const BookParcel = () => {
                 placeholder=""
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mt-4">
               <label
                 className="text-gray-700 font-semibold mb-2 block"
@@ -244,7 +249,6 @@ const BookParcel = () => {
                 placeholder="Latitude"
                 value={latitude}
                 onChange={handleLatitudeChange}
-                {...register("latitude", { required: true })}
               />
               {errors.latitude && (
                 <p className="text-red-500">{errors.latitude}</p>
@@ -268,7 +272,6 @@ const BookParcel = () => {
                 placeholder="Longitude"
                 value={longitude}
                 onChange={handleLongitudeChange}
-                {...register("longitude", { required: true })}
               />
               {errors.longitude && (
                 <p className="text-red-500">{errors.longitude}</p>
@@ -287,7 +290,7 @@ const BookParcel = () => {
                 className="block w-full border rounded-md py-2 px-3 text-gray-700 placeholder-gray-400 focus:border-2 focus:border-orange-500"
                 id="requestedDeliveryDate"
                 name="requestedDeliveryDate"
-                type="text"
+                type="date"
                 placeholder=""
               />
             </div>
@@ -310,6 +313,7 @@ const BookParcel = () => {
                 value={parcelWeight}
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mt-4">
               <label
                 className="text-gray-700 font-semibold mb-2 block"

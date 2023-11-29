@@ -68,7 +68,8 @@ const UpdateParcel = () => {
     setErrors({ ...errors, longitude: validateLongitude(value) });
   };
 
-  const onsubmit = () => {
+  const onsubmit = (e) => {
+    e.preventDefault();
     console.log("updated");
   };
 

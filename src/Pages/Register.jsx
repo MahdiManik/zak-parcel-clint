@@ -30,6 +30,7 @@ const Register = () => {
             name: data.name,
             email: data.email,
             photo: data.photoURL,
+            phone: data.phone,
             userType: data.userType,
           };
           axiosPublic.post("/users", userInfo).then((res) => {
@@ -119,6 +120,22 @@ const Register = () => {
                   />
                   {errors.photoURL && (
                     <span className="text-red-600">Photo URL is required</span>
+                  )}
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Phone number</span>
+                  </label>
+                  <input
+                    type="phone"
+                    {...register("phone", { required: true })}
+                    name="phone"
+                    placeholder="phone"
+                    className="input input-bordered"
+                  />
+                  {errors.phone && (
+                    <span className="text-red-600">phone is required</span>
                   )}
                 </div>
                 <div className="form-control">

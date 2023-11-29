@@ -11,13 +11,13 @@ const MyParcel = () => {
           My Parcel ({booking?.length})
         </h3>
       </div>
-      <table className="md:w-[1080px] text-xs mt-8 mx-auto  text-white border-4">
+      <table className="md:w-[1050px] text-xs mt-8 mx-auto  text-white border-4">
         <thead className="bg-white text-black">
           <tr className="">
             <th className="p-3">Parcel Type</th>
+            <th className="p-3">Booking Date</th>
             <th className="p-3">Requested Date</th>
             <th className="p-3">Approximate Date</th>
-            <th className="p-3">Booking Date</th>
             <th className="p-3 ">Delivery Men ID</th>
             <th className="p-3">Status</th>
             <th className="p-3">Update</th>

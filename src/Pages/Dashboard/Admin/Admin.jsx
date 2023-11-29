@@ -24,15 +24,16 @@ const Admin = () => {
           </span>
           All Delivery Man
         </NavLink>
+
         <NavLink
           className="hover:text-white btn btn-ghost bg-orange-600 w-full  flex items-center gap-3
 			"
-          to={"/dashboard/user-profile"}
+          to={"/dashboard/all-users"}
         >
           <span className="text-2xl">
             <FaBookmark />
           </span>
-          My Profile
+          All Users
         </NavLink>
 
         <div className="flex flex-col w-full border-opacity-50">
