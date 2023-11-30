@@ -4,7 +4,6 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const AllParcelRow = ({ item, refetch }) => {
-  //  const [status, setStatus] = useState("");
   const [deliveryMan, setDeliveryMan] = useState([]);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
@@ -21,40 +20,44 @@ const AllParcelRow = ({ item, refetch }) => {
   }, [axiosSecure]);
 
   //  handle for Manage booking status chang
+
   const handleManage = async (e, id) => {
-    e.preventDefault();
-    refetch();
-    const response = await axiosPublic.patch(`/parcel/${id}`, {
-      status: "On the way",
-    });
-
-    if (response.data.modifiedCount > 0) {
+    try {
+      e.preventDefault();
       refetch();
-      console.log("Booking status updated successfully", response.data);
-    } else {
-      console.log("Booking not found or status not updated", response.data);
-    }
-
-    const form = e.target;
-    const deliveryManId = form.deliveryManId.value;
-    const approximateDate = form.approximateDate.value;
-    const email = form.email.value;
-
-    const data = {
-      deliveryManId,
-      approximateDate,
-      status: status,
-      email,
-    };
-    const res = await axiosPublic.post("/parcel-info", data);
-    console.log(res.data);
-    if (res.data.insertedId) {
-      refetch();
-      Swal.fire({
-        icon: "success",
-        position: "top-end",
-        text: "Data create and save on database",
+      const response = await axiosPublic.patch(`/parcel/${id}`, {
+        status: "On the way",
       });
+
+      if (response.data.modifiedCount > 0) {
+        console.log("Booking status updated successfully", response.data);
+        refetch();
+      } else {
+        console.log("Booking not found or status not updated", response.data);
+      }
+
+      const form = e.target;
+      const deliveryManId = form.deliveryManId.value;
+      const approximateDate = form.approximateDate.value;
+      const email = form.email.value;
+
+      const data = {
+        deliveryManId,
+        approximateDate,
+        email,
+      };
+      const res = await axiosPublic.post("/parcel-info", data);
+      console.log(res.data);
+      if (res.data.insertedId) {
+        refetch();
+        Swal.fire({
+          icon: "success",
+          position: "top-end",
+          text: "Data create and save on database",
+        });
+      }
+    } catch (error) {
+      console.error("Error in handleManage:", error);
     }
   };
 

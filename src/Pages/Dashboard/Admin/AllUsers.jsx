@@ -37,7 +37,7 @@ const AllUsers = () => {
             <tr className=" text-white text-[14px] font-semibold">
               <td>{person?.name}</td>
               <td>{person?.phone}</td>
-              <td>{person?.email}</td>
+              <td>Booked Parcel ({person?.bookingCount})</td>
               <td>
                 <button className="btn btn-ghost text-3xl">
                   <FaUserCircle />

@@ -11,7 +11,7 @@ const MyParcel = () => {
           My Parcel ({booking?.length})
         </h3>
       </div>
-      <table className="md:w-[1050px] text-xs mt-8 mx-auto  text-white border-4">
+      <table className="max-w-[1250px] w-full text-xs mt-8 mx-auto  text-white border-4">
         <thead className="bg-white text-black">
           <tr className="">
             <th className="p-3">Parcel Type</th>

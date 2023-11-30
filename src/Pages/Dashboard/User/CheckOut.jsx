@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Swal from "sweetalert2";
-import useParcel from "../../../Hooks/useParcel";
+//import useParcel from "../../../Hooks/useParcel";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
-const CheckOut = () => {
+const CheckOut = ({ item }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
   const [transactionId, setTransactionId] = useState("");
@@ -13,8 +13,10 @@ const CheckOut = () => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
-  const [booking, refetch] = useParcel();
-  const totalPrice = booking?.reduce((total, item) => total + item.price, 0);
+  //  const [booking, refetch] = useParcel();
+
+  console.log(item?.price);
+  const totalPrice = item?.price;
 
   useEffect(() => {
     if (totalPrice > 0) {
@@ -73,25 +75,23 @@ const CheckOut = () => {
       }
     }
     // now save the payment in the database
-    const payment = {
-      email: user.email,
-      price: totalPrice,
-      transactionId: paymentIntent.id,
-      date: new Date(), // utc date convert. use moment js to
-      cartIds: booking.map((item) => item._id),
-      menuItemIds: booking.map((item) => item.menuId),
-      status: "pending",
-    };
-    const res = await axiosSecure.post("/payments", payment);
+    //const payment = {
+    //  email: user.email,
+    //  price: totalPrice,
+    //  transactionId: paymentIntent.id,
+    //  date: new Date(), // utc date convert. use moment js to
+    //  cartIds: booking.map((item) => item._id),
+    //  menuItemIds: booking.map((item) => item.menuId),
+    //  status: "pending",
+    //};
+    const res = await axiosSecure.post("/payments");
     console.log("payment saved", res.data);
-    refetch();
+
     if (res.data?.paymentResult?.insertedId) {
       Swal.fire({
-        position: "top-center",
         icon: "success",
+        position: "top",
         title: "payment successful",
-        showConfirmButton: false,
-        timer: 1500,
       });
     }
   };
@@ -126,7 +126,7 @@ const CheckOut = () => {
           </button>
         </div>
         {transactionId && (
-          <p className="text-green-600 mt-7">
+          <p className="text-black mt-10">
             Your transaction id: {transactionId}
           </p>
         )}

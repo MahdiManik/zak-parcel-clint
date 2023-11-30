@@ -1,23 +1,33 @@
 import { useForm } from "react-hook-form";
 import { Title } from "../../../Shared/Title";
-import useAuth from "../../../Hooks/useAuth";
+//import useAuth from "../../../Hooks/useAuth";
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 
 const UpdateParcel = () => {
-  const { user } = useAuth();
+  //  const { user } = useAuth();
   const data = useLoaderData();
-  console.log("data", data);
   const {
-    phone,
-    parcelType,
-    receiverName,
-    receiverPhoneNumber,
+    email,
+    name,
     parcelDeliveryAddress,
+    phone,
+    receiverName,
     requestedDeliveryDate,
+    parcelType,
+    receiverPhoneNumber,
   } = data || {};
+  console.log("data", data);
+  //  const {
+  //    phone,
+  //    parcelType,
+  //    receiverName,
+  //    receiverPhoneNumber,
+  //    parcelDeliveryAddress,
+  //    requestedDeliveryDate,
+  //  } = data || {};
 
-  const { register, handleSubmit } = useForm();
+  const { register } = useForm();
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [errors, setErrors] = useState({});
@@ -68,7 +78,7 @@ const UpdateParcel = () => {
     setErrors({ ...errors, longitude: validateLongitude(value) });
   };
 
-  const onsubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("updated");
   };
@@ -80,10 +90,7 @@ const UpdateParcel = () => {
           <Title heading={"This form is for updating your booking parcel"} />
         </h1>
         <p className="text-gray-600 text-center mb-8 w-2/3 mx-auto"></p>
-        <form
-          className="rounded-lg p-8"
-          onSubmit={() => handleSubmit(onsubmit)}
-        >
+        <form className="rounded-lg p-8" onSubmit={handleSubmit}>
           <div className="flex flex-wrap -mx-4 mb-4">
             <div className="w-full md:w-1/2 px-4 mb-4">
               <label
@@ -99,9 +106,10 @@ const UpdateParcel = () => {
                 name="name"
                 readOnly
                 type="text"
-                defaultValue={user?.displayName}
+                defaultValue={name}
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mb-4 ">
               <label
                 className="text-gray-700 font-semibold mb-2 block"
@@ -115,10 +123,11 @@ const UpdateParcel = () => {
                 id="email"
                 name="email"
                 readOnly
-                defaultValue={user?.email}
+                defaultValue={email}
                 type="text"
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mt-4">
               <label
                 className="text-gray-700 font-semibold mb-2 block"
@@ -136,6 +145,7 @@ const UpdateParcel = () => {
                 defaultValue={phone}
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mt-4">
               <label
                 className="text-gray-700 font-semibold mb-2 block"
@@ -185,6 +195,7 @@ const UpdateParcel = () => {
                 placeholder=""
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mt-4">
               <label
                 className="text-gray-700 font-semibold mb-2 block"
@@ -290,6 +301,7 @@ const UpdateParcel = () => {
                 //value={parcelWeight}
               />
             </div>
+
             <div className="w-full md:w-1/2 px-4 mt-4">
               <label
                 className="text-gray-700 font-semibold mb-2 block"

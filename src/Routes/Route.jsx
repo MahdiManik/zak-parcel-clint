@@ -18,6 +18,8 @@ import { Modal } from "bootstrap";
 import UpdateParcel from "../Pages/Dashboard/User/UpdateParcel";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 import Payment from "../Pages/Dashboard/User/Payment";
+import MyReview from "../Pages/Dashboard/DeliveryMan/MyReview";
+import MyDeliveryList from "../Pages/Dashboard/DeliveryMan/MyDeliveryList";
 
 const router = createBrowserRouter([
   {
@@ -52,8 +54,16 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "payment",
+        path: "update-booking/:id",
+        element: <UpdateParcel />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:7000/booking/${params.id}`),
+      },
+      {
+        path: "payment/:id",
         element: <Payment />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:7000/booking/${params.id}`),
       },
       {
         path: "book-parcel",
@@ -72,11 +82,14 @@ const router = createBrowserRouter([
         element: <DeliveryManHome />,
       },
       {
-        path: "update-booking",
-        element: <UpdateParcel />,
-        loader: ({ params }) =>
-          fetch(`http://localhost:7000/bookings/${params.email}`),
+        path: "delivery-deliver",
+        element: <MyDeliveryList />,
       },
+      {
+        path: "delivery-review",
+        element: <MyReview />,
+      },
+
       {
         path: "admin-home",
         element: (
@@ -123,11 +136,7 @@ const router = createBrowserRouter([
       //  },
       {
         path: "modal",
-        element: (
-          <AdminRoute>
-            <Modal />
-          </AdminRoute>
-        ),
+        element: <Modal />,
       },
     ],
   },
