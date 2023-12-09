@@ -1,8 +1,30 @@
-# React + Vite
+# About my parcel booking project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
 
-Currently, two official plugins are available:
+- three features for Why Chose Our Service.
+- admin dashboard.
+- delivery man dashboard.
+- user dashboard.
+- User can book parcel and see hes all booking parcel
+- user can be cancel and update and pay and review his booking parcel.
+-login and register with user or delivery man
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## used language
+
+- mern stack,
+- tailwind,
+- daisy ui,
+
+## used Tecnologies 
+
+- tans tack query.
+- axios with interceptor for data fetching.
+- json web token etc...
+
+
+## 🔗 Live Links
+
+https://zak-parcel-project.web.app/
+
+
